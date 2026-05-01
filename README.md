@@ -1,13 +1,13 @@
-# Lumina Task
+# VeloTask
 
-**Lumina Task** is a sophisticated, glassmorphic productivity suite designed for modern teams who value both aesthetic precision and functional depth. Built with a "Swiss-meets-Cyberpunk" design philosophy, it transforms the mundane act of task management into an immersive, atmospheric experience.
+**VeloTask** is a sophisticated, glassmorphic productivity suite designed for modern teams who value both aesthetic precision and functional depth. Built with a "Swiss-meets-Cyberpunk" design philosophy, it transforms the mundane act of task management into an immersive, atmospheric experience.
 
 ---
 
 ## 🎨 Design Case Study: The "Atmosphere of Action"
 
 ### 1. Vision & Identity
-The core vision for Lumina Task was to move away from the "sterile" look of traditional SaaS products. Instead of white backgrounds and flat cards, we embraced **Atmospheric Productivity**. The UI is designed to feel like a high-end command center—calm, deep, and focused.
+The core vision for VeloTask was to move away from the "sterile" look of traditional SaaS products. Instead of white backgrounds and flat cards, we embraced **Atmospheric Productivity**. The UI is designed to feel like a high-end command center—calm, deep, and focused.
 
 ### 2. Visual Language: Glassmorphism & Depth
 The interface relies heavily on the **Glassmorphism** trend to create a sense of physical layering.
@@ -46,4 +46,4 @@ We opted for a **high-contrast typographic system**:
 
 ---
 
-> *"Design is not just what it looks like and feels like. Design is how it works."* — Lumina Task focuses on the intersection where high-end aesthetic meets production-grade performance.
+> *"Design is not just what it looks like and feels like. Design is how it works."* — VeloTask focuses on the intersection where high-end aesthetic meets production-grade performance.

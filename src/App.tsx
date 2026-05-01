@@ -320,7 +320,7 @@ export default function App() {
   ]);
 
   const [tasks, setTasks] = useState<Task[]>(() => {
-    const saved = localStorage.getItem('lumina-tasks');
+    const saved = localStorage.getItem('velotask-tasks');
     return saved ? JSON.parse(saved) : [
       {
         id: '1',
@@ -373,7 +373,7 @@ export default function App() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   useEffect(() => {
-    localStorage.setItem('lumina-tasks', JSON.stringify(tasks));
+    localStorage.setItem('velotask-tasks', JSON.stringify(tasks));
   }, [tasks]);
 
   const handleToggleTask = (id: string) => {

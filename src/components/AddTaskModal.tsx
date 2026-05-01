@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Sparkles, Plus, Calendar, User as UserIcon, Layers } from 'lucide-react';
-import { Priority, Task, Project, User, Status } from '../types';
+import { X, Plus, Calendar, User as UserIcon, Layers } from 'lucide-react';
+import { Priority, Task, Project, User } from '../types';
 import { cn } from '../lib/utils';
-import { suggestTaskPriority } from '../services/geminiService';
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -21,8 +20,6 @@ export default function AddTaskModal({ isOpen, onClose, onAdd, workspaceId, proj
   const [priority, setPriority] = useState<Priority>('medium');
   const [projectId, setProjectId] = useState(projects[0]?.id || '');
   const [tags, setTags] = useState('');
-  const [isSuggesting, setIsSuggesting] = useState(false);
-  const [aiNote, setAiNote] = useState('');
   const [assignees, setAssignees] = useState<string[]>([]);
   const [dueDate, setDueDate] = useState('');
 
@@ -31,16 +28,6 @@ export default function AddTaskModal({ isOpen, onClose, onAdd, workspaceId, proj
       setProjectId(projects[0].id);
     }
   }, [projects, projectId]);
-
-  const handleSuggest = async () => {
-    if (!title) return;
-    setIsSuggesting(true);
-    setAiNote('');
-    const result = await suggestTaskPriority(title, description);
-    setPriority(result.priority);
-    setAiNote(result.reasoning);
-    setIsSuggesting(false);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,7 +50,6 @@ export default function AddTaskModal({ isOpen, onClose, onAdd, workspaceId, proj
     setDescription('');
     setPriority('medium');
     setTags('');
-    setAiNote('');
     setAssignees([]);
     setDueDate('');
     onClose();
@@ -152,15 +138,6 @@ export default function AddTaskModal({ isOpen, onClose, onAdd, workspaceId, proj
                 <div className="space-y-1.5">
                    <div className="flex items-center justify-between px-1">
                       <label className="text-[10px] font-bold uppercase tracking-[0.1em] text-white/60">Priority</label>
-                      <button
-                        type="button"
-                        onClick={handleSuggest}
-                        disabled={isSuggesting || !title}
-                        className="text-[9px] font-black uppercase text-primary hover:text-indigo-300 disabled:opacity-30 flex items-center gap-1 transition-colors"
-                      >
-                        <Sparkles className="w-2.5 h-2.5" />
-                        AI Optmize
-                      </button>
                    </div>
                    <div className="flex p-1 bg-white/10 rounded-xl border border-white/20 shadow-inner">
                       {(['low', 'medium', 'high', 'urgent'] as Priority[]).map((p) => (
@@ -190,17 +167,6 @@ export default function AddTaskModal({ isOpen, onClose, onAdd, workspaceId, proj
                     className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-primary/40 transition-all text-xs font-semibold text-white placeholder:text-white/30 shadow-inner"
                   />
                 </div>
-
-                {aiNote && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-3 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-3"
-                  >
-                    <Sparkles className="w-4 h-4 text-primary shrink-0" />
-                    <p className="text-[11px] font-medium text-indigo-200 italic">"{aiNote}"</p>
-                  </motion.div>
-                )}
 
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
